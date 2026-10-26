@@ -21,7 +21,7 @@
 */
 
 /* [Main dimensions] */
-handle_length = 110;  // Rear end to the fan neck (x = 0)
+handle_length = 95;   // Shortened for P1S: ~241.9 mm overall, ~7.1 mm end clearance
 handle_width = 25;    // 2.5 cm across the handle
 head_side_length = 90; // Approximate outer corner-to-corner sloping side from photos
 head_outer_width = 90; // 9 cm maximum width, including the edge rails

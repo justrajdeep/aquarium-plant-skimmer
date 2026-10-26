@@ -10,6 +10,7 @@ A customizable aquarium plant skimmer and beginner-friendly OpenSCAD example.
 
 - `aquarium_skimmer.scad`: editable source with learning comments.
 - `aquarium_skimmer.stl`: default geometry for your slicer.
+- `aquarium_skimmer.3mf`: user-saved Bambu Studio project for P1S / 0.4 mm nozzle; includes print settings, not a verified physical print profile.
 - `aquarium_skimmer.png`: illustration generated from the STL.
 - `DIMENSIONS.md`: dimensions, photo interpretation, and remaining estimates.
 - `LICENSE`: GNU GPL version 3.
@@ -28,9 +29,9 @@ The openings extend almost all the way to the handle. A 1.6 mm border replaces t
 
 The opposite fan uses the same mirrored construction with a **45 mm wide front edge**, half the large fan's 90 mm width. `second_width_ratio = 0.5` sets this relationship; changing `head_outer_width` updates both front widths. Its depth is **62.95 mm**, three-quarters of the large fan's 83.93 mm depth, controlled by `second_length_ratio = 0.75`. Both heads keep the same 25 mm handle junction, four rows, 0.8 mm ribs and braces, and raised lip heights. The small fan has **eight slots per row**, set by `second_slot_count = 8`; the large fan retains sixteen slots per row. The small fan has equal clear rows of approximately 14.34 mm along X and sloping sides of approximately 63.73 mm. `second_fan_enabled = false` restores a single-ended tool.
 
-Both fans join a 25 mm wide handle. The handle extends 110 mm between the fan junctions. An 18 × 10 mm oval hanging hole starts at the opposite fan base and extends into the handle. `hole_base_offset` moves it toward the large fan; `hole_enabled = false` removes it. `second_fan_enabled = false` restores a single-ended tool with a rounded hanging-loop end.
+Both fans join a 25 mm wide handle. The handle extends 95 mm between the fan junctions. An 18 × 10 mm oval hanging hole starts at the opposite fan base and extends into the handle. `hole_base_offset` moves it toward the large fan; `hole_enabled = false` removes it. `second_fan_enabled = false` restores a single-ended tool with a rounded hanging-loop end.
 
-The complete default tool is approximately **256.9 × 90 × 6.4 mm**. The user confirmed the caliper measurements: `thickness = 2.43` mm for the flat base and `total_height = 6.40` mm from the underside to the top of the lip. The code calculates `lip_height = total_height - thickness`, giving a 3.97 mm rise above the base. Both lips use these heights and sit flush with the side and front fan edges. `lip_handle_clearance = solid_neck_length` aligns the side lip ends with the slot openings, 1.6 mm from each handle junction. The lips cover the full slotted area, while the rear edge across the handle entry remains flat. Rib and perimeter widths in the XY plane remain estimates.
+The complete default tool is approximately **241.9 × 90 × 6.4 mm**. The user confirmed the caliper measurements: `thickness = 2.43` mm for the flat base and `total_height = 6.40` mm from the underside to the top of the lip. The code calculates `lip_height = total_height - thickness`, giving a 3.97 mm rise above the base. Both lips use these heights and sit flush with the side and front fan edges. `lip_handle_clearance = solid_neck_length` aligns the side lip ends with the slot openings, 1.6 mm from each handle junction. The lips cover the full slotted area, while the rear edge across the handle entry remains flat. Rib and perimeter widths in the XY plane remain estimates.
 
 ## Try it
 
@@ -55,6 +56,16 @@ Both fan drawings use `linear_extrude()` to add thickness, and a second extrusio
 | `circle()` and `hull()` | Draw rounded bars and the oval hanging hole |
 | `linear_extrude()` | Give a 2D drawing thickness |
 | `mirror([1, 0, 0])` | Reverse the opposite fan along X |
+
+## P1S build-plate fit
+
+The handle is shortened from 110 mm to 95 mm for a total length of approximately 241.87 mm. On the P1S's nominal 256 × 256 mm build area, center the model flat with its long axis parallel to a plate edge. This leaves approximately 7.06 mm at each end. A 5 mm brim would bring the bounding footprint to approximately 251.87 × 100 mm. These are geometry calculations; inspect the actual sliced plate with your selected printer settings before printing.
+
+## Bambu Studio project
+
+Open `aquarium_skimmer.3mf` as a project to load the saved P1S / 0.4 mm nozzle settings and model placement. The project contains PLA presets, 0.20 mm layers, and a 5 mm outer brim. It is preserved as supplied by the user and has not been physically test-printed.
+
+**Re-center the model before slicing:** its saved placement fits the model itself on the nominal 256 mm plate, but the calculated 5 mm brim footprint reaches approximately 257.22 mm on Y. After centering, inspect the sliced brim and plate boundaries. The nominal centered fit calculation above leaves room for that brim.
 
 ## Before printing
 
