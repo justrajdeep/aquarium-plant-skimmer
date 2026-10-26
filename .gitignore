@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 *.zip
+
+# Local Bambu Studio command-line diagnostics
+result.json

@@ -45,14 +45,14 @@ The complete default tool is approximately **241.9 × 90 × 6.4 mm**. The user c
 
 The large fan starts as an outer trapezoid drawn with `polygon()`. Nested `for` loops subtract four rows of sixteen trapezoidal openings using `difference()`. This keeps the narrow openings at the neck usable with thin ribs.
 
-Both fan drawings use `linear_extrude()` to add thickness, and a second extrusion creates the lip. At the bottom, the code calls `large_fan_3d()` once for each end. For the second head, `mirror([1, 0, 0])` reverses it and `translate([-handle_length, 0, 0])` places it at the opposite junction. The second call passes `second_head_outer_width` and `second_head_length` to change its wide edge and depth. Geometry and brace positions are rebuilt for these dimensions, so the handle junction, ribs, perimeter, and height stay fixed instead of being scaled. `union()` joins them to the handle, and `difference()` cuts the hanging hole through the combined geometry.
+Both fan drawings use `linear_extrude()` to add thickness, and a second extrusion creates the lip from three explicit strips (two sides and the front), with no rear strip across the handle. At the bottom, the code calls `large_fan_3d()` once for each end. For the second head, `mirror([1, 0, 0])` reverses it and `translate([-handle_length, 0, 0])` places it at the opposite junction. The second call passes `second_head_outer_width` and `second_head_length` to change its wide edge and depth. Geometry and brace positions are rebuilt for these dimensions, so the handle junction, ribs, perimeter, and height stay fixed instead of being scaled. `union()` joins them to the handle, and `difference()` cuts the hanging hole through the combined geometry.
 
 | Construct | Purpose |
 |---|---|
 | `polygon([...])` | Outline the large fan and its openings |
 | `for (...)` | Repeat slot rows, columns, ribs, or braces |
 | `difference()` | Remove slots or the hanging hole |
-| `offset(delta = ...)` | Inset the outline to define its perimeter lip |
+| `intersection()` | Clip the front lip strip to the fan outline |
 | `circle()` and `hull()` | Draw rounded bars and the oval hanging hole |
 | `linear_extrude()` | Give a 2D drawing thickness |
 | `mirror([1, 0, 0])` | Reverse the opposite fan along X |
@@ -63,9 +63,9 @@ The handle is shortened from 110 mm to 95 mm for a total length of approximately
 
 ## Bambu Studio project
 
-Open `aquarium_skimmer.3mf` as a project to load the saved P1S / 0.4 mm nozzle settings and model placement. The project contains PLA presets, 0.20 mm layers, and a 5 mm outer brim. It is preserved as supplied by the user and has not been physically test-printed.
+Open `aquarium_skimmer.3mf` as a project to load the saved P1S / 0.4 mm nozzle settings and model placement. The project contains PLA presets, 0.20 mm layers, and a 5 mm outer brim. Its model geometry has been refreshed from the current STL to remove a thin rear-lip artifact; the original user-saved print settings and placement are preserved. It has not been physically test-printed.
 
-**Re-center the model before slicing:** its saved placement fits the model itself on the nominal 256 mm plate, but the calculated 5 mm brim footprint reaches approximately 257.22 mm on Y. After centering, inspect the sliced brim and plate boundaries. The nominal centered fit calculation above leaves room for that brim.
+The saved project has been re-centered. Its rotated model footprint is approximately X = 83.00–173.00 mm and Y = 6.84–249.16 mm, so the nominal 5 mm brim also fits inside the 256 mm plate. This is a geometry/settings check; inspect the actual sliced brim before printing.
 
 ## Before printing
 

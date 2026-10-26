@@ -32,7 +32,7 @@ The ruler photographs establish approximate in-plane dimensions. The user confir
 Source: https://github.com/justrajdeep/aquarium-plant-skimmer
 
 - `aquarium_skimmer.stl`: default printable geometry.
-- `aquarium_skimmer.3mf`: user-saved Bambu Studio project for P1S / 0.4 mm nozzle, with 0.20 mm layers and a 5 mm outer brim; re-center the model before slicing.
+- `aquarium_skimmer.3mf`: user-saved Bambu Studio project for P1S / 0.4 mm nozzle, with 0.20 mm layers and a 5 mm outer brim, centered on the plate.
 - `aquarium_skimmer.scad`: editable source.
 - `README.md`: beginner workflow.
 - `DIMENSIONS.md`: measurement interpretation and estimates.
@@ -41,7 +41,7 @@ Source: https://github.com/justrajdeep/aquarium-plant-skimmer
 
 Compiled in OpenSCAD 2021.01. This version has not been test-printed or tested in an aquarium. The preview is a model illustration, not a photograph of a validation print.
 
-Place the flat underside on the bed with the lips facing up. Centered on the nominal 256 × 256 mm P1S build area, the model leaves about 7.1 mm of clearance at each end along its length. The geometry is intended to need no supports. Check build-area fit and inspect sliced ribs and narrow neck slots before printing. A user-saved Bambu Studio project is included, but it is not physically print-tested. Re-center its model before slicing: the saved off-center placement makes the nominal 5 mm brim extend about 1.2 mm beyond one edge of the plate.
+Place the flat underside on the bed with the lips facing up. Centered on the nominal 256 × 256 mm P1S build area, the model leaves about 7.1 mm of clearance at each end along its length. The geometry is intended to need no supports. Check build-area fit and inspect sliced ribs and narrow neck slots before printing. A Bambu Studio project is included with geometry refreshed to remove a thin rear-lip artifact and with the user-saved print settings retained; it is not physically print-tested. Its saved centered placement accommodates the nominal 5 mm brim; inspect the sliced plate before printing.
 
 ## Customization and license
 

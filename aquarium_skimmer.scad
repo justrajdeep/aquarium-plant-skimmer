@@ -189,13 +189,25 @@ module large_grid_2d(outer_width = head_outer_width, length = head_length,
 }
 
 module large_lip_2d(outer_width = head_outer_width, length = head_length) {
-    difference() {
+    // Build only the three wanted walls. Subtracting the rear of an inset ring
+    // at exactly the inset boundary can leave a thin face in slicers.
+    // Explicit side strips avoid that coincident-edge artifact entirely.
+    start = lip_handle_clearance;
+    outer_at_start = lerp(handle_width/2, outer_width/2, start/length);
+    intersection() {
         large_outline_2d(outer_width, length);
-        offset(delta = -large_rim_width) large_outline_2d(outer_width, length);
-        // Side lips cover the full slotted area, beginning at the first slot.
-        // Remove the rear wall so there is no raised edge across the handle.
-        translate([-1, -outer_width])
-            square([lip_handle_clearance + 1, 2*outer_width]);
+        union() {
+            for (side = [-1, 1])
+                polygon([
+                    [start, side * outer_at_start],
+                    [length, side * outer_width/2],
+                    [length, side * large_inner_half_width(length, outer_width, length)],
+                    [start, side * large_inner_half_width(start, outer_width, length)]
+                ]);
+            // Clip this front strip to the fan outline at the corners.
+            translate([length - large_rim_width, -outer_width/2])
+                square([large_rim_width, outer_width]);
+        }
     }
 }
 
