@@ -78,3 +78,7 @@ Feedback, test prints, and pull requests are welcome. Include parameter values a
 The model was developed with AI assistance from visual references and iteratively adjusted. Reference photographs are not included in this repository.
 
 Licensed under **GNU GPL version 3 only** (`GPL-3.0-only`). See [LICENSE](LICENSE). Contributions should use the same license.
+
+## Support the project
+
+If you find this project useful, you can [buy me a coffee via PayPal](https://paypal.me/justrajdeep84). Thank you for your support!
