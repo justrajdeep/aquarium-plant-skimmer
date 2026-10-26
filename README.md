@@ -2,9 +2,11 @@
 
 A customizable aquarium plant skimmer and beginner-friendly OpenSCAD example.
 
-![Model preview, not a photograph of a physical print](aquarium_skimmer.png)
+![Physical test print of the dual-ended aquarium plant skimmer in red](aquarium_skimmer_test_print.jpg)
 
-**Status:** source compiled in OpenSCAD 2021.01; STL preview inspected. The current model has not been test-printed or tested in an aquarium. The reference photographs show an existing printed tool, not a validation print of this version.
+*Physical test print photographed by the creator.*
+
+**Status:** the creator confirms that the model has been test-printed. Source compiled in OpenSCAD 2021.01; STL preview inspected. Aquarium testing and the settings used for the physical print have not been documented. The preview images are digital illustrations, not photographs of the test print.
 
 ## Files
 
@@ -12,8 +14,10 @@ A customizable aquarium plant skimmer and beginner-friendly OpenSCAD example.
 - `aquarium_skimmer.stl`: default geometry for your slicer.
 - `aquarium_skimmer.3mf`: user-saved Bambu Studio project for P1S / 0.4 mm nozzle; includes print settings, not a verified physical print profile.
 - `aquarium_skimmer.png`: illustration generated from the STL.
+- `aquarium_skimmer_test_print.jpg`: photograph of the creator's physical test print.
+- `cover-4x3.png`: generated 4:3 cover illustration.
 - `DIMENSIONS.md`: dimensions, photo interpretation, and remaining estimates.
-- `LICENSE`: GNU GPL version 3.
+- `LICENSE`: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
 - `MAKERWORLD_DESCRIPTION.md`: ready-to-paste listing description.
 - `scripts/render_preview.py`: optional preview generator (Python and Pillow).
 
@@ -63,7 +67,7 @@ The handle is shortened from 110 mm to 95 mm for a total length of approximately
 
 ## Bambu Studio project
 
-Open `aquarium_skimmer.3mf` as a project to load the saved P1S / 0.4 mm nozzle settings and model placement. The project contains PLA presets, 0.20 mm layers, and a 5 mm outer brim. Its model geometry has been refreshed from the current STL to remove a thin rear-lip artifact; the original user-saved print settings and placement are preserved. It has not been physically test-printed.
+Open `aquarium_skimmer.3mf` as a project to load the saved P1S / 0.4 mm nozzle settings and model placement. The project contains PLA presets, 0.20 mm layers, and a 5 mm outer brim. Its model geometry has been refreshed from the current STL to remove a thin rear-lip artifact; the original user-saved print settings and placement are preserved. The model has been test-printed, as confirmed by the creator; the exact settings used for that print have not been documented, so this saved profile is not independently verified by that confirmation.
 
 The saved project has been re-centered. Its rotated model footprint is approximately X = 83.00–173.00 mm and Y = 6.84–249.16 mm, so the nominal 5 mm brim also fits inside the 256 mm plate. This is a geometry/settings check; inspect the actual sliced brim before printing.
 
@@ -77,7 +81,11 @@ Feedback, test prints, and pull requests are welcome. Include parameter values a
 
 The model was developed with AI assistance from visual references and iteratively adjusted. Reference photographs are not included in this repository.
 
-Licensed under **GNU GPL version 3 only** (`GPL-3.0-only`). See [LICENSE](LICENSE). Contributions should use the same license.
+The model, editable OpenSCAD source, exported STL and 3MF files, preview images, and documentation are licensed under **Creative Commons Attribution-ShareAlike 4.0 International** (`CC-BY-SA-4.0`), matching the MakerWorld listing choice. See [LICENSE](LICENSE) and the [licence summary](https://creativecommons.org/licenses/by-sa/4.0/). You may share and adapt these materials, including commercially, with attribution, an indication of changes, and ShareAlike licensing for adaptations. Attribute **justrajdeep** and link to this repository.
+
+The optional software utility `scripts/render_preview.py` remains under **GNU GPL version 3 only** (`GPL-3.0-only`); see [LICENSES/GPL-3.0-only.txt](LICENSES/GPL-3.0-only.txt). Contributions should use the licence applicable to the files changed.
+
+Earlier versions were distributed under GPL-3.0-only. This change does not revoke the permissions already granted for those copies.
 
 ## Support the project
 

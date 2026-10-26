@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
+# See LICENSES/GPL-3.0-only.txt for this utility's licence.
 # Copyright (C) 2026 aquarium-skimmer contributors
 """Draw the exported ASCII STL with Pillow, without requiring OpenGL.
 

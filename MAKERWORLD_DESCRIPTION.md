@@ -34,17 +34,18 @@ Source: https://github.com/justrajdeep/aquarium-plant-skimmer
 - `aquarium_skimmer.stl`: default printable geometry.
 - `aquarium_skimmer.3mf`: user-saved Bambu Studio project for P1S / 0.4 mm nozzle, with 0.20 mm layers and a 5 mm outer brim, centered on the plate.
 - `aquarium_skimmer.scad`: editable source.
+- `aquarium_skimmer_test_print.jpg`: photograph of the creator's physical test print.
 - `README.md`: beginner workflow.
 - `DIMENSIONS.md`: measurement interpretation and estimates.
 
 ## Printing and status
 
-Compiled in OpenSCAD 2021.01. This version has not been test-printed or tested in an aquarium. The preview is a model illustration, not a photograph of a validation print.
+Compiled in OpenSCAD 2021.01. The model has been test-printed; the included photograph shows the creator's red print. Aquarium testing and the exact settings used for the test print have not been documented. The generated cover and STL preview are illustrations; the file `aquarium_skimmer_test_print.jpg` is a physical print photograph.
 
-Place the flat underside on the bed with the lips facing up. Centered on the nominal 256 × 256 mm P1S build area, the model leaves about 7.1 mm of clearance at each end along its length. The geometry is intended to need no supports. Check build-area fit and inspect sliced ribs and narrow neck slots before printing. A Bambu Studio project is included with geometry refreshed to remove a thin rear-lip artifact and with the user-saved print settings retained; it is not physically print-tested. Its saved centered placement accommodates the nominal 5 mm brim; inspect the sliced plate before printing.
+Place the flat underside on the bed with the lips facing up. Centered on the nominal 256 × 256 mm P1S build area, the model leaves about 7.1 mm of clearance at each end along its length. The geometry is intended to need no supports. Check build-area fit and inspect sliced ribs and narrow neck slots before printing. A Bambu Studio project is included with geometry refreshed to remove a thin rear-lip artifact and with the user-saved print settings retained; the exact settings used for the confirmed test print have not been documented, so that confirmation does not independently verify this saved profile. Its saved centered placement accommodates the nominal 5 mm brim; inspect the sliced plate before printing.
 
 ## Customization and license
 
 Edit parameters in OpenSCAD, preview with F5, render with F6, and export a new STL. Feedback and test-print results are welcome.
 
-Developed with AI assistance from visual references and iterative user feedback. Licensed under GNU GPL version 3 only (`GPL-3.0-only`); source and license are included. Retain the license and provide source when redistributing modified versions under these terms.
+Developed with AI assistance from visual references and iterative user feedback. The model, editable CAD source, exported files, preview images, and documentation are licensed under Creative Commons Attribution-ShareAlike 4.0 International (`CC-BY-SA-4.0`): https://creativecommons.org/licenses/by-sa/4.0/. Sharing and adaptations, including commercial use, are permitted with attribution and ShareAlike terms. Attribute justrajdeep, link to the GitHub repository and licence, and indicate changes. The optional Python preview utility remains under GPL-3.0-only; see `LICENSES/GPL-3.0-only.txt`. Earlier GPL releases retain their original permissions.

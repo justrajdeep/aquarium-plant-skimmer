@@ -1,9 +1,11 @@
-// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-License-Identifier: CC-BY-SA-4.0
 // Copyright (C) 2026 aquarium-skimmer contributors
 /*
- This program is free software: you can redistribute it and/or modify it
- under the terms of the GNU General Public License version 3.
- It is distributed without any warranty. See LICENSE for the full terms.
+ This CAD design is licensed under Creative Commons Attribution-ShareAlike
+ 4.0 International. Attribute justrajdeep and the project repository,
+ indicate changes, and share adaptations under the same licence.
+ See LICENSE and https://creativecommons.org/licenses/by-sa/4.0/.
+ Provided without warranties. Earlier GPL releases retain their permissions.
 
  Aquarium floating-plant skimmer — a beginner OpenSCAD example.
  Based on reference photos and user-confirmed measurements; see DIMENSIONS.md.
