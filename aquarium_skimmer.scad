@@ -6,14 +6,14 @@
  It is distributed without any warranty. See LICENSE for the full terms.
 
  Aquarium floating-plant skimmer — a beginner OpenSCAD example.
- Inspired by the supplied photos; dimensions are estimates, not measurements.
+ Based on reference photos and user-confirmed measurements; see DIMENSIONS.md.
  Units: millimetres. The whole part sits flat on the XY plane, Z >= 0.
 
  LEARNING PATH
- 1. Change head_width below, then press F5 to preview.
+ 1. Change head_outer_width below, then press F5 to preview.
  2. Change rib_count to see how a for-loop repeats geometry.
  3. Read bar_2d(): hull() joins two circles into a rounded bar.
- 4. Read the bottom: mirror() reverses the narrow fan to face the other way.
+ 4. Read the bottom: mirror() reverses the opposite fan to face the other way.
  5. At the bottom, linear_extrude() turns the 2D drawing into a 3D part.
 
  Open this file in OpenSCAD. F5 = preview; F6 = render.
@@ -22,37 +22,46 @@
 
 /* [Main dimensions] */
 handle_length = 110;  // Rear end to the fan neck (x = 0)
-handle_width = 28;
-rim_width = 3.2;      // Shared width of the fan edges and raised lips
-head_length = 105;    // Neck to the wide collecting edge
-head_width = 130;     // Distance between outer rib centrelines at the tip
-neck_width = handle_width - rim_width; // Including rails, base matches handle
-thickness = 3.2;
+handle_width = 25;    // 2.5 cm across the handle
+head_side_length = 90; // Approximate outer corner-to-corner sloping side from photos
+head_outer_width = 90; // 9 cm maximum width, including the edge rails
+thickness = 2.43;     // Caliper-confirmed flat base thickness
 
-/* [Sieve grid] */
-rib_count = 21;       // Includes the two thick outer rails
-rib_width = 1.6;
-brace_count = 3;      // Interior braces; the tip rim is added separately
-brace_width = 1.6;
-solid_neck_length = 25; // Fill the narrow slots nearest the handle; 0 disables
+// Match the measured OUTER trapezoid, rather than subtracting rounded rail caps.
+// A 90 mm side and a 32.5 mm half-flare give approximately 83.93 mm of depth.
+head_length = sqrt(pow(head_side_length, 2)
+                   - pow((head_outer_width - handle_width)/2, 2));
 
-/* [Narrow fan at opposite end] */
-small_fan_enabled = true;
-small_head_length = 70;
-small_head_width = 40;
-small_neck_width = neck_width; // Both fan bases match the handle width
-small_rib_count = 9;
-small_brace_count = 2;
-small_solid_neck_length = 22; // Meets the first brace with these dimensions
+/* [Large fan grid from reference photos] */
+rib_count = 17;        // 16 openings across each of four rows
+slot_row_count = 4;
+large_rim_width = 1.6; // XY perimeter width estimated from photos
+large_rib_width = 0.8;
+large_brace_width = 0.8;
+solid_neck_length = large_rim_width; // Only a small border at the handle junction
+brace_count = slot_row_count - 1;
+slot_clear_length = (head_length - large_rim_width - solid_neck_length
+                     - brace_count * large_brace_width) / slot_row_count;
+// With these dimensions, equal rows are ~19.58 mm long, at ~20.38 mm pitch.
+
+/* [Opposite fan] */
+second_fan_enabled = true;
+second_width_ratio = 0.5; // Wide edge is half the large fan width
+second_length_ratio = 0.75; // Handle-to-front depth is three-quarters of large fan
+second_slot_count = 8;     // Eight openings per row on the small fan
+second_head_outer_width = head_outer_width * second_width_ratio;
+second_head_length = head_length * second_length_ratio;
 
 /* [Raised fan lip] */
-lip_height = 2;       // Extra height above the sieve; use 0 to disable
-// The lip uses rim_width so its walls are flush with the fan edge.
+total_height = 6.40;  // Caliper-confirmed height from underside to top of lip
+lip_height = total_height - thickness; // 3.97 mm above the base
+lip_handle_clearance = solid_neck_length; // Side lips start exactly where slots start
+// Both lips use large_rim_width so their walls are flush with the fan edges.
 
 /* [Hanging hole] */
 // The hanging hole is cut in the handle.
 hole_enabled = true;
-hole_base_offset = 0; // Slot starts this far into the handle from narrow fan base
+hole_base_offset = 0; // Slot starts this far into the handle from opposite fan base
 hole_length = 18;
 hole_width = 10;
 hole_end_margin = 10; // Material from rear end of handle to rear end of hole
@@ -63,35 +72,33 @@ $fn = 48;            // Number of facets used to approximate each circle
 // Guard against common invalid edits. assert() explains the problem.
 assert(handle_width > 0 && thickness > 0);
 assert(handle_length > handle_width);
-assert(head_length > rim_width && head_width >= neck_width);
-assert(neck_width > 0 && neck_width <= handle_width);
-assert(rib_width > 0 && rim_width >= rib_width && brace_width > 0);
+assert(head_side_length > abs(head_outer_width - handle_width)/2);
+assert(large_rim_width > 0 && large_rib_width > 0 && large_brace_width > 0);
+assert(head_length > large_rim_width && head_outer_width >= handle_width);
+assert(slot_clear_length > 0);
+assert(!second_fan_enabled || second_head_outer_width >= handle_width,
+       "Opposite fan wide edge must be at least as wide as its handle junction.");
+assert(!second_fan_enabled || second_head_length
+       > large_rim_width + solid_neck_length + brace_count * large_brace_width,
+       "Opposite fan is too short for the requested rows and brace widths.");
+assert(!second_fan_enabled || (second_slot_count >= 1
+       && second_slot_count == floor(second_slot_count)));
 assert(rib_count >= 3 && rib_count == floor(rib_count));
 assert(brace_count >= 0 && brace_count == floor(brace_count));
 assert(solid_neck_length >= 0 && solid_neck_length < head_length);
 assert(lip_height >= 0);
-assert(!small_fan_enabled || (
-    small_head_length > rim_width && small_head_width >= small_neck_width
-    && small_neck_width > 0 && small_neck_width <= handle_width
-    && small_rib_count >= 3 && small_rib_count == floor(small_rib_count)
-    && small_brace_count >= 0 && small_brace_count == floor(small_brace_count)
-    && small_solid_neck_length >= 0
-    && small_solid_neck_length < small_head_length
-));
+assert(lip_handle_clearance >= large_rim_width && lip_handle_clearance < head_length);
+assert(!second_fan_enabled || lip_handle_clearance < second_head_length);
 assert(hole_width > 0 && hole_length >= hole_width);
 assert(hole_end_margin > 0 && hole_end_margin + hole_length < handle_length);
 // Keep the oval entirely inside the rounded rear of the handle.
 assert(hole_width < handle_width);
 assert(hole_end_margin + hole_width/2 >= handle_width/2);
-assert(!small_fan_enabled || !hole_enabled || (
+assert(!second_fan_enabled || !hole_enabled || (
     hole_base_offset >= 0
     && hole_base_offset + hole_length <= handle_length - 2
     && handle_width >= hole_width + 4
 ), "Keep the hanging slot inside the handle width and clear of the big fan.");
-
-/* [Hidden] */
-// A small overlap makes the neck and handle one connected solid.
-neck_overlap = 2;
 
 // A function returns a value. This one linearly interpolates between a and b.
 // t = 0 gives a; t = 1 gives b; t = 0.5 gives the midpoint.
@@ -108,14 +115,14 @@ module bar_2d(p1, p2, width) {
 
 module handle_2d() {
     // With two fans, keep the handle full width at both connections.
-    if (small_fan_enabled) {
-        translate([-handle_length - neck_overlap, -handle_width/2])
-            square([handle_length + 2 * neck_overlap, handle_width]);
+    if (second_fan_enabled) {
+        translate([-handle_length, -handle_width/2])
+            square([handle_length, handle_width]);
     } else {
         // The single-ended version keeps its rounded hanging-loop end.
         union() {
             translate([-handle_length + handle_width/2, -handle_width/2])
-                square([handle_length - handle_width/2 + neck_overlap,
+                square([handle_length - handle_width/2,
                         handle_width]);
             translate([-handle_length + handle_width/2, 0])
                 circle(d = handle_width);
@@ -124,78 +131,81 @@ module handle_2d() {
 }
 
 module hanging_hole_2d() {
-    // The narrow fan base is x = -handle_length.
+    // The opposite fan base is x = -handle_length.
     // Align the oval's end (not its center) with that base, then extend into handle.
-    hole_start = -handle_length + (small_fan_enabled
+    hole_start = -handle_length + (second_fan_enabled
                                   ? hole_base_offset : hole_end_margin);
     bar_2d([hole_start + hole_width/2, 0],
            [hole_start + hole_length - hole_width/2, 0], hole_width);
 }
 
-// Parameters let both heads share the same code without scaling rib thickness.
-module fan_2d(length = head_length, tip_width = head_width,
-              neck = neck_width, ribs = rib_count,
-              braces = brace_count, solid_length = solid_neck_length) {
-    // Fill the first section with a solid trapezoid instead of tiny slots.
-    // polygon() connects the listed [x, y] corners in order.
-    if (solid_length > 0) {
-        fraction = (solid_length + neck_overlap)
-                   / (length + neck_overlap);
-        half_width = lerp(neck/2, tip_width/2, fraction);
-        polygon(points = [
-            [-neck_overlap, -neck/2],
-            [solid_length, -half_width],
-            [solid_length, half_width],
-            [-neck_overlap, neck/2]
-        ]);
-    }
+// The photographed large fan has a straight-sided OUTER trapezoid.
+module large_outline_2d(outer_width = head_outer_width, length = head_length) {
+    polygon([[0, -handle_width/2], [length, -outer_width/2],
+             [length, outer_width/2], [0, handle_width/2]]);
+}
 
-    // Repeat ribs across the fan. Their endpoints spread out toward the tip.
-    for (i = [0 : ribs - 1]) {
-        fraction = i / (ribs - 1);
-        neck_y = lerp(-neck/2, neck/2, fraction);
-        tip_y = lerp(-tip_width/2, tip_width/2, fraction);
-        // The ternary operator is: condition ? value_if_true : value_if_false.
-        width = (i == 0 || i == ribs - 1) ? rim_width : rib_width;
-        bar_2d([-neck_overlap, neck_y], [length, tip_y], width);
-    }
+// Offset the sloping sides inward by the perimeter thickness.
+function large_inner_half_width(x, outer_width = head_outer_width,
+                                length = head_length) =
+    lerp(handle_width/2, outer_width/2, x/length)
+    - large_rim_width * sqrt(1 + pow((outer_width-handle_width)
+                                      / (2*length), 2));
 
-    // Close the wide collecting edge with a rounded rim.
-    bar_2d([length, -tip_width/2],
-           [length, tip_width/2], rim_width);
+// Slot boundaries interpolate across the usable width, leaving thin ribs.
+function large_slot_y(x, fraction, outer_width = head_outer_width,
+                      length = head_length) =
+    lerp(-large_inner_half_width(x, outer_width, length),
+         large_inner_half_width(x, outer_width, length), fraction);
 
-    // Cross-braces connect the ribs and divide the long slots.
-    // The if() avoids an OpenSCAD descending range when braces = 0.
-    if (braces > 0) {
-        for (j = [1 : braces]) {
-            fraction = j / (braces + 1);
-            x = lerp(-neck_overlap, length, fraction);
-            half_width = lerp(neck/2, tip_width/2, fraction);
-            bar_2d([x, -half_width], [x, half_width], brace_width);
+module large_grid_2d(outer_width = head_outer_width, length = head_length,
+                     slots = rib_count - 1) {
+    row_clear_length = (length - large_rim_width - solid_neck_length
+                        - brace_count * large_brace_width) / slot_row_count;
+    assert(row_clear_length > 0);
+    difference() {
+        large_outline_2d(outer_width, length);
+        // Remove one trapezoid for every slot in each row.
+        for (row = [0 : slot_row_count - 1]) {
+            x0 = solid_neck_length + row * (row_clear_length + large_brace_width);
+            x1 = x0 + row_clear_length;
+            for (column = [0 : slots - 1]) {
+                f0 = column / slots;
+                f1 = (column + 1) / slots;
+                low_gap = column == 0 ? 0 : large_rib_width/2;
+                high_gap = column == slots - 1 ? 0 : large_rib_width/2;
+                assert(large_slot_y(x0, f1, outer_width, length) - high_gap
+                       > large_slot_y(x0, f0, outer_width, length) + low_gap,
+                       "Large fan ribs leave no opening at the neck.");
+                polygon([
+                    [x0, large_slot_y(x0, f0, outer_width, length) + low_gap],
+                    [x1, large_slot_y(x1, f0, outer_width, length) + low_gap],
+                    [x1, large_slot_y(x1, f1, outer_width, length) - high_gap],
+                    [x0, large_slot_y(x0, f1, outer_width, length) - high_gap]
+                ]);
+            }
         }
     }
 }
 
-// The lip follows both sides and the wide collecting edge of the fan.
-// Leave the neck open so the lip does not cross the handle.
-module lip_2d(length = head_length, tip_width = head_width, neck = neck_width) {
-    for (side = [-1, 1])
-        bar_2d([-neck_overlap, side * neck/2],
-               [length, side * tip_width/2], rim_width);
-    bar_2d([length, -tip_width/2],
-           [length, tip_width/2], rim_width);
+module large_lip_2d(outer_width = head_outer_width, length = head_length) {
+    difference() {
+        large_outline_2d(outer_width, length);
+        offset(delta = -large_rim_width) large_outline_2d(outer_width, length);
+        // Side lips cover the full slotted area, beginning at the first slot.
+        // Remove the rear wall so there is no raised edge across the handle.
+        translate([-1, -outer_width])
+            square([lip_handle_clearance + 1, 2*outer_width]);
+    }
 }
 
-// Build either fan with the same full-width raised perimeter.
-module fan_3d(length = head_length, tip_width = head_width,
-              neck = neck_width, ribs = rib_count,
-              braces = brace_count, solid_length = solid_neck_length) {
+// Rebuild each head with its own width and depth; preserve neck and material widths.
+module large_fan_3d(outer_width = head_outer_width, length = head_length,
+                    slots = rib_count - 1) {
     union() {
-        linear_extrude(height = thickness)
-            fan_2d(length, tip_width, neck, ribs, braces, solid_length);
+        linear_extrude(height = thickness) large_grid_2d(outer_width, length, slots);
         if (lip_height > 0)
-            linear_extrude(height = thickness + lip_height)
-                lip_2d(length, tip_width, neck);
+            linear_extrude(height = thickness + lip_height) large_lip_2d(outer_width, length);
     }
 }
 
@@ -204,16 +214,14 @@ module fan_3d(length = head_length, tip_width = head_width,
 difference() {
     union() {
         linear_extrude(height = thickness) handle_2d();
-        fan_3d();
+        large_fan_3d();
     
-        // mirror([1, 0, 0]) reverses X, so this head points the other way.
+        // Reuse the fan module at half width and three-quarter depth, then mirror X.
         // translate() places its neck at the opposite end of the handle.
-        if (small_fan_enabled)
+        if (second_fan_enabled)
             translate([-handle_length, 0, 0])
                 mirror([1, 0, 0])
-                    fan_3d(small_head_length, small_head_width, small_neck_width,
-                           small_rib_count, small_brace_count,
-                           small_solid_neck_length);
+                    large_fan_3d(second_head_outer_width, second_head_length, second_slot_count);
     }
 
     if (hole_enabled)

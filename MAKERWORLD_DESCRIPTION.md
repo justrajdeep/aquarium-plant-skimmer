@@ -1,47 +1,48 @@
 # Dual-Ended Aquarium Plant Skimmer — Parametric OpenSCAD
 
-A double-ended skimmer designed to collect floating aquarium plants. The wide fan covers open areas, while the narrower fan is intended for reaching between plants and into confined spaces.
+A double-ended skimmer intended to collect floating aquarium plants, with a wide fan and a half-width fan facing opposite directions.
 
 ## Features
 
-- Wide fan and narrow fan on opposite ends of one handle.
-- Raised lips merged flush with both fans' perimeter edges.
-- Solid fan bases replace the smallest slots near the handle.
-- Both fan bases match the handle width.
-- Oval hanging hole in the handle, starting at the narrow fan base.
-- Editable OpenSCAD source with comments for learning and customization.
+- Large fan reconstructed from ruler photographs of an existing printed tool.
+- Four rows of sixteen slots on the large fan, extending almost to the handle.
+- Approximately 20 mm brace pitch on the large fan, with equal clear row lengths.
+- Mirrored construction at the opposite end with a 45 mm front edge, half the large fan width and three-quarters of its depth, with four rows of eight slots.
+- Raised lips merged flush with the side and front edges and extending to the start of the slots; no rear lip across either handle junction.
+- Both fan bases match the 25 mm handle width.
+- Oval hanging hole in the handle at the opposite fan junction.
+- Commented, editable OpenSCAD source for learning and customization.
 
-## Default dimensions
+## Dimensions
 
-- Overall: approximately 288.2 × 133.2 × 5.2 mm.
-- Handle width: 28 mm.
-- Wide fan length: 105 mm; outer width: 133.2 mm.
-- Narrow fan length: 70 mm; outer width: 43.2 mm.
-- Base thickness: 3.2 mm; raised lips: an additional 2 mm.
+- Overall: approximately 256.9 × 90 × 6.4 mm.
+- Large fan: 90 mm front width, 25 mm neck width, 90 mm sloping outer sides, approximately 83.93 mm depth.
+- Large fan rows: approximately 19.58 mm clear length along the fan, 20.38 mm brace pitch.
+- Large fan ribs / braces: estimated 0.8 mm; perimeter: estimated 1.6 mm.
+- Opposite fan: 45 mm front width, 25 mm neck width, approximately 62.95 mm depth; four rows of eight slots with approximately 14.34 mm clear row length, and the same material widths and lip heights.
+- Handle: 110 mm between fan junctions, 25 mm wide.
+- Base thickness: 2.43 mm; total height at lip: 6.40 mm; lip rise above base: 3.97 mm (user-confirmed caliper measurements).
 - Hanging hole: 18 × 10 mm.
 
-## Source code
+The ruler photographs establish approximate in-plane dimensions. The user confirmed the base thickness and total height from caliper photographs. Rib and perimeter widths in the XY plane remain design estimates. The model is not an exact dimensional copy of the reference.
 
-https://github.com/justrajdeep/aquarium-plant-skimmer
+## Source and files
 
-## Files
+Source: https://github.com/justrajdeep/aquarium-plant-skimmer
 
 - `aquarium_skimmer.stl`: default printable geometry.
-- `aquarium_skimmer.scad`: editable, parameterized source.
-- `README.md`: beginner guide and parameter explanations.
+- `aquarium_skimmer.scad`: editable source.
+- `README.md`: beginner workflow.
+- `DIMENSIONS.md`: measurement interpretation and estimates.
 
 ## Printing and status
 
-This design has compiled and exported successfully in OpenSCAD 2021.01. It has not yet been test-printed or tested in an aquarium. The preview image is a model illustration, not a photograph of a physical print.
+Compiled in OpenSCAD 2021.01. This version has not been test-printed or tested in an aquarium. The preview is a model illustration, not a photograph of a validation print.
 
-Place the flat underside on the build plate with the raised lips facing up. The geometry is intended to print without supports. Check the model's size against your printer's build area and inspect the sliced ribs and slots before printing. Confirm material, layer height, adhesion, and strength with your own test print; no tested print profile is included.
+Place the flat underside on the bed with the lips facing up. The geometry is intended to need no supports. Check build-area fit and inspect sliced ribs and narrow neck slots before printing. No tested Bambu Studio print profile is included.
 
-## Customization
+## Customization and license
 
-Open the SCAD file in OpenSCAD. Edit the dimensions near the top, preview with F5, render with F6, and export a fresh STL. Both heads share reusable modules, so their dimensions can change without scaling the rib and edge thicknesses.
+Edit parameters in OpenSCAD, preview with F5, render with F6, and export a new STL. Feedback and test-print results are welcome.
 
-The design was developed with AI assistance from visual references and iteratively adjusted. Feedback, test-print results, and improvements are welcome.
-
-## License
-
-GNU General Public License version 3 only (GPL-3.0-only). The complete editable source and license are included with the model files. Keep the source and license available when redistributing modified versions under these terms.
+Developed with AI assistance from visual references and iterative user feedback. Licensed under GNU GPL version 3 only (`GPL-3.0-only`); source and license are included. Retain the license and provide source when redistributing modified versions under these terms.

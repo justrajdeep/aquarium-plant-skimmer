@@ -12,6 +12,7 @@ Use the prepared files in `aquarium-skimmer-publish.zip`:
 
 - Model geometry: `aquarium_skimmer.stl`.
 - Editable source: `aquarium_skimmer.scad`.
+- Reference measurement notes: `DIMENSIONS.md`.
 - Cover illustration: `aquarium_skimmer.png` (a model preview, not a print photograph).
 - Description: copy the contents of `MAKERWORLD_DESCRIPTION.md`.
 - License: include `LICENSE` and retain GPL-3.0-only notices.
