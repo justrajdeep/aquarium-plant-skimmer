@@ -34,13 +34,13 @@ Source: https://github.com/justrajdeep/aquarium-plant-skimmer
 - `aquarium_skimmer.stl`: default printable geometry.
 - `aquarium_skimmer.3mf`: user-saved Bambu Studio project for P1S / 0.4 mm nozzle, with 0.20 mm layers and a 5 mm outer brim, centered on the plate.
 - `aquarium_skimmer.scad`: editable source.
-- `aquarium_skimmer_test_print.jpg`: photograph of the creator's physical test print.
+- `photos/`: physical test-print photographs showing the full tool, large head, small head, and original overview.
 - `README.md`: beginner workflow.
 - `DIMENSIONS.md`: measurement interpretation and estimates.
 
 ## Printing and status
 
-Compiled in OpenSCAD 2021.01. The model has been test-printed; the included photograph shows the creator's red print. Aquarium testing and the exact settings used for the test print have not been documented. The generated cover and STL preview are illustrations; the file `aquarium_skimmer_test_print.jpg` is a physical print photograph.
+Compiled in OpenSCAD 2021.01. The model has been test-printed; the included photograph shows the creator's red print. Aquarium testing and the exact settings used for the test print have not been documented. The generated cover and STL preview are illustrations; the file `photos/test-print-overview.jpg` is a physical print photograph.
 
 Place the flat underside on the bed with the lips facing up. Centered on the nominal 256 × 256 mm P1S build area, the model leaves about 7.1 mm of clearance at each end along its length. The geometry is intended to need no supports. Check build-area fit and inspect sliced ribs and narrow neck slots before printing. A Bambu Studio project is included with geometry refreshed to remove a thin rear-lip artifact and with the user-saved print settings retained; the exact settings used for the confirmed test print have not been documented, so that confirmation does not independently verify this saved profile. Its saved centered placement accommodates the nominal 5 mm brim; inspect the sliced plate before printing.
 

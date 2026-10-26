@@ -2,7 +2,7 @@
 
 A customizable aquarium plant skimmer and beginner-friendly OpenSCAD example.
 
-![Physical test print of the dual-ended aquarium plant skimmer in red](aquarium_skimmer_test_print.jpg)
+![Physical test print of the dual-ended aquarium plant skimmer in red](photos/test-print-full-tool.jpg)
 
 *Physical test print photographed by the creator.*
 
@@ -14,12 +14,21 @@ A customizable aquarium plant skimmer and beginner-friendly OpenSCAD example.
 - `aquarium_skimmer.stl`: default geometry for your slicer.
 - `aquarium_skimmer.3mf`: user-saved Bambu Studio project for P1S / 0.4 mm nozzle; includes print settings, not a verified physical print profile.
 - `aquarium_skimmer.png`: illustration generated from the STL.
-- `aquarium_skimmer_test_print.jpg`: photograph of the creator's physical test print.
+- `photos/`: four photographs of the creator's physical test print, including the full tool and head details.
 - `cover-4x3.png`: generated 4:3 cover illustration.
 - `DIMENSIONS.md`: dimensions, photo interpretation, and remaining estimates.
 - `LICENSE`: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
 - `MAKERWORLD_DESCRIPTION.md`: ready-to-paste listing description.
 - `scripts/render_preview.py`: optional preview generator (Python and Pillow).
+
+## Test-print photos
+
+| View | Photo |
+|---|---|
+| Full tool | [Full tool](photos/test-print-full-tool.jpg) |
+| Large head | [Large head detail](photos/test-print-large-head.jpg) |
+| Small head | [Small head detail](photos/test-print-small-head.jpg) |
+| Original overview | [Overview](photos/test-print-overview.jpg) |
 
 ## Large fan matched to ruler photographs
 

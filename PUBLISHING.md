@@ -15,7 +15,7 @@ Use the prepared files in `aquarium-skimmer-publish.zip`:
 - Editable source: `aquarium_skimmer.scad`.
 - Reference measurement notes: `DIMENSIONS.md`.
 - Cover illustration: `cover-4x3.png` (4:3 generated model illustration) or `aquarium_skimmer.png` (STL preview). Neither is a print photograph.
-- Physical print photo: `aquarium_skimmer_test_print.jpg` (creator-provided red test print). Upload this as a real-print gallery image.
+- Physical print photos: `photos/test-print-full-tool.jpg`, `photos/test-print-large-head.jpg`, `photos/test-print-small-head.jpg`, and `photos/test-print-overview.jpg`. Use the full-tool photograph for the real-print cover/gallery and the head details as additional views.
 - Description: copy the contents of `MAKERWORLD_DESCRIPTION.md`.
 - Licence: choose Creative Commons Attribution-ShareAlike (CC BY-SA 4.0), allowing adaptations under ShareAlike terms and commercial use. Include `LICENSE`. The model and CAD source use this licence; the optional Python preview utility remains GPL-3.0-only with its licence in `LICENSES/GPL-3.0-only.txt`.
 
@@ -23,4 +23,4 @@ The creator's upload-form screenshot shows Creative Commons Attribution-Share Al
 
 Include the source link: https://github.com/justrajdeep/aquarium-plant-skimmer. Suggested tags: `aquarium`, `skimmer`, `floating plants`, `duckweed`, `openscad`, `parametric`.
 
-The creator confirms a physical test print of the model and has supplied `aquarium_skimmer_test_print.jpg`. Aquarium testing and the exact printer, material, and settings used for that print have not been documented. The included Bambu Studio project remains user-saved; the test-print confirmation alone does not verify that profile. Its saved placement is centered and its nominal 5 mm brim fits within the plate bounds; inspect the actual sliced plate and record the settings used before labelling the uploaded profile as tested. Identify generated images as illustrations. Only use images you have permission to publish.
+The creator confirms a physical test print of the model and has supplied `photos/test-print-overview.jpg`. Aquarium testing and the exact printer, material, and settings used for that print have not been documented. The included Bambu Studio project remains user-saved; the test-print confirmation alone does not verify that profile. Its saved placement is centered and its nominal 5 mm brim fits within the plate bounds; inspect the actual sliced plate and record the settings used before labelling the uploaded profile as tested. Identify generated images as illustrations. Only use images you have permission to publish.
